@@ -7,3 +7,7 @@
 11:20: adding more ideas into my stretch goals as per recommendations
 
 11:53: lunch break!
+
+13:39: still doing up research on frameworks
+
+15:14: looking over react-smooth-dnd on github as a possible method for rendering drag drop functionality
