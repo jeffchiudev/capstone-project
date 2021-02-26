@@ -1,28 +1,37 @@
 # Name of project: Oubliettes & Dragones: a character building exercise
 ### by Jeff Chiu, Epicodus C#/React October Cohort
 
-## Projects purpose or goal: 
+## Projects purpose: 
 
-_The current online character builder that is being employed by WOC for D&D has a lot of what you want in a character builder; you select your class, race, background, abilities etc. However when you get around to outfitting your character, be that literally, or their items they carry on themselves, it ends up just being something selected from a drop down menu and text that is inserted into your character sheet that the builder helps populate.  It will of course make changes to your stats based on those items but not much else._  
+_The current online character builder that is being employed by WOC for D&D has a lot of what you want in a character builder; you select your class, race, background, abilities etc. However when you get around to outfitting your character, be that literally, or their items they carry on themselves, it ends up being something selected from a drop down menu and text that is inserted into your character sheet that the builder helps populate and make changes to your stats based on those items but not much else._  
 
-_My idea was to make something more visually appealing and allows drag and drop functionality with a very basic block avatar showing what part of the body the item is occupying.  This is a very familiar mechanic in games such as Diablo or World of Warcraft where items are dropped into slots and then appear on the character._  
+_My idea was to make a web app that is more visually appealing and allows drag and drop functionality with a very basic block avatar showing what part of the body the item is occupying.  This is a very familiar mechanic in games such as Diablo or World of Warcraft where items are dropped into slots and then appear on the character._  
 
 _The goal is something in between the complexity of modern RPG item equipment screens and the (digital) pen & paper method we currently have that allows for a set list of items to be clicked on, and dragged over to a specific slot on a character sheet and reflected on the character’s stat page._
 
-## List of MVP
+## MVP
 
-2 classes/backgrounds that reflect basic changes to base statistics that all starting characters have
-10+ items that will affect individual stats
+* User registration
+* User login/signout
+* 2 classes/backgrounds that reflect basic changes to base statistics
+* 10+ items that will affect individual stats
 
 ## Tools/resources that will be used to reach MVP
 
+VS Code
 React
-
+Redux
+Firebase
 
 ## Stretch Goals:
-Drag & drop functionality from a side bar of equipment
-Genetic avatar with equipment slots that can be populated with items/equipment
 
+* Drag & drop functionality from a side bar of equipment
+* Generic avatar with equipment slots that can be populated with items/equipment
+* Additional classes
+* Additional class variants
+* Additional items
+* Class specific avatars
+* Homebrew Item creation?
 
 ## Additional tools/resources for stretch goals:
 
