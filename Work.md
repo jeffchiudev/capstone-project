@@ -5,3 +5,5 @@
 10:55: still filling out readme and ideas for project. 
 
 11:20: adding more ideas into my stretch goals as per recommendations
+
+11:53: lunch break!
