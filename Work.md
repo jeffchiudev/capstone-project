@@ -23,3 +23,9 @@
 ## Saturday 2021/3/6
 
 1800-2000: watching videos for research, setting up basic component structure
+
+## Sunday 2021/3/7
+
+1000-1200: more research, thumbing through some more tutorials for similar projects.  
+
+1300-1430: re-drawing mock-up addind color coding for easier thought of how to organize page
