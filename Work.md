@@ -33,3 +33,6 @@
 1500-1600: continuing to plan out components
 
 2000-2130: more pondering about the structure to the page and adding components that I suspect I will need. 
+
+## Monday 2021/3/8
+
