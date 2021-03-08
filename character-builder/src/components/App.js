@@ -5,8 +5,10 @@ import CharacterControl from './CharacterControl';
 function App() {
   return (
     <React.Fragment>
-      <Header />
-      <CharacterControl/>
+      <div className="container">
+        <Header />
+        <CharacterControl/>
+      </div>
     </React.Fragment>
   );
 }
