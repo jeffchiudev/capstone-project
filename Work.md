@@ -29,3 +29,5 @@
 1000-1200: more research, thumbing through some more tutorials for similar projects.  
 
 1300-1430: re-drawing mock-up addind color coding for easier thought of how to organize page
+
+1500-1600: continuing to plan out components
