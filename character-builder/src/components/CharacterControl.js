@@ -14,7 +14,7 @@ class CharacterControl extends React.Component {
 
   handleClick = () => {
     this.setState(prevState => ({
-      sheetVisbileOnPage: !prevState.sheetVisbileOnPage
+      sheetVisibleOnPage: !prevState.sheetVisibleOnPage
     }));
   }
 
@@ -22,10 +22,10 @@ class CharacterControl extends React.Component {
     let currentVisibleState = null;
     let buttonText = null;
     if (this.state.sheetVisibleOnPage) {
-      currentVisibleState = <CharacterClassSelect />
+      currentVisibleState = <CharacterSheet />
       buttonText = "Pick your class"; 
     } else {
-      currentVisibleState = <CharacterSheet />
+      currentVisibleState = <CharacterClassSelect />
       buttonText = "Update Class";
       // pickClassButton = <button onClick={this.handleClick}>Pick Class</button>
     }
