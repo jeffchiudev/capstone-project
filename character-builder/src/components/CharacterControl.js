@@ -23,10 +23,10 @@ class CharacterControl extends React.Component {
     let buttonText = null;
     if (this.state.sheetVisibleOnPage) {
       currentVisibleState = <CharacterSheet />
-      buttonText = "Pick your class"; 
+      buttonText = "Change your class"; 
     } else {
       currentVisibleState = <CharacterClassSelect />
-      buttonText = "Update Class";
+      buttonText = "Back to Character Sheet";
       // pickClassButton = <button onClick={this.handleClick}>Pick Class</button>
     }
     return (

@@ -18,34 +18,37 @@ function CharacterClassSelect(props){
         <div className="row mb-3">
           <div className="col card">
             <img src={warrior} alt="An image of a warrior"/>
-            <div class="radio">
+            <div className="text-center" class="radio">
               <label>
                 <input type="radio" name="class" value="warrior" checked/><br/>
-                Warrior
+                <strong>Warrior</strong>
+                <p>For discerning meatheads</p>
               </label>
             </div>
           </div>
           <div className="col card">
           <img src={wizard} alt="An image of a wizard"/>
-            <div class="radio">
+            <div className="text-center" class="radio">
               <label>
                 <input type="radio" name="class" value="wizard" /><br/>
-                Wizard
+                <strong>Wizard</strong>
+                <p>For showy eggheads</p>
               </label>
             </div>
           </div>
           <div className="col card">
           <img src={thief} alt="An image of a thief"/>
-            <div class="radio">
+            <div className="text-center" class="radio">
               <label>
                 <input type="radio" name="class" value="thief" /><br/>
-                Thief
+                <strong>Thief</strong>
+                <p>For tricky kleptomaniacs</p>
               </label>
             </div>
           </div>
         </div>
         
-        <button type='submit'>Make My Charater!</button>
+        <button type='submit'>Make My Character!</button>
       </form>
     </React.Fragment>
   );
