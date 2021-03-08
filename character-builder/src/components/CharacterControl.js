@@ -1,6 +1,7 @@
 import React from 'react';
 import CharacterSheet from './CharacterSheet';
 import ItemCategoryList from './ItemCategoryList';
+import CharacterClassSelect from './CharacterClassSelect';
 
 class CharacterControl extends React.Component {
 
@@ -21,7 +22,7 @@ class CharacterControl extends React.Component {
     if (this.state.sheetVisibleOnPage) {
       currentVisibleState = <CharacterSheet />
     } else {
-      currentVisibleState = <ClassList />
+      currentVisibleState = <CharacterClassSelect />
       pickClassButton = <button onClick={this.handleClick}>Pick Class</button>
     }
     return (
