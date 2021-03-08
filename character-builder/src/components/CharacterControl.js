@@ -13,22 +13,26 @@ class CharacterControl extends React.Component {
   }
 
   handleClick = () => {
-    this.setState({sheetVisbileOnPage: true});
+    this.setState(prevState => ({
+      sheetVisbileOnPage: !prevState.sheetVisbileOnPage
+    }));
   }
 
   render () {
     let currentVisibleState = null;
-    let pickClassButton = null;
+    let buttonText = null;
     if (this.state.sheetVisibleOnPage) {
-      currentVisibleState = <CharacterSheet />
-    } else {
       currentVisibleState = <CharacterClassSelect />
-      pickClassButton = <button onClick={this.handleClick}>Pick Class</button>
+      buttonText = "Pick your class"; 
+    } else {
+      currentVisibleState = <CharacterSheet />
+      buttonText = "Update Class";
+      // pickClassButton = <button onClick={this.handleClick}>Pick Class</button>
     }
     return (
       <React.Fragment>
         {currentVisibleState}
-        {pickClassButton}
+        <button onClick = {this.handleClick}>{buttonText}</button>
       </React.Fragment>
     );
   }
