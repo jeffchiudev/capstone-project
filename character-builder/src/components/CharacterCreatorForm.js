@@ -23,7 +23,7 @@ function CharacterCreatorForm(props){
         <input
           type='text'
           name='name'
-          placeholder='CharacterName'/>
+          placeholder='Character Name'/>
         <div className="row mb-3">
           <div className="col card">
             <img src={warrior} alt="An image of a warrior"/>

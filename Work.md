@@ -44,5 +44,9 @@
 
 ## Tuesday 2021/3/9
 
+0800-1130: realized I'm just building a slightly different version of help queue and have wasted a lot of time agonizing over nothing.
 
+1300-1445: working on adding ability to show character details. 
+
+1445-1530: adding CRUD functionality to character sheet
 

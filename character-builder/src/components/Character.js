@@ -4,15 +4,17 @@ import PropTypes from 'prop-types';
 function Character(props) {
   return (
     <React.Fragment>
-      <h1>Character example</h1>
-      <h3>{props.name}</h3>
-      <h3>{props.class}</h3>
+      <div onClick = {() => props.whenCharacterClicked(props.id)}>
+        <h3>{props.name} - {props.class}</h3>
+      </div>
     </React.Fragment>
   );
 }
 
 Character.propTypes = {
   name: PropTypes.string.isRequired,
-  class: PropTypes.string
+  class: PropTypes.string,
+  id: PropTypes.string,
+  whenCharacterClicked: PropTypes.func
 };
 export default Character;
