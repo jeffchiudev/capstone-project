@@ -1,12 +1,12 @@
 import React from 'react';
-import CharacterClassSelect from './CharacterClassSelect';
+import CharacterCreatorForm from './CharacterCreatorForm';
 import PropTypes from 'prop-types';
 
 function CharacterSheet(props) {
   return (
     <React.Fragment>
       {props.characterPick.map((pick, index) => 
-        <CharacterClassSelect name={pick.name}
+        <CharacterCreatorForm name={pick.name}
       )}
     </React.Fragment>
   );

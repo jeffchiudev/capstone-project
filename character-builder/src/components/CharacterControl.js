@@ -1,7 +1,6 @@
 import React from 'react';
-import CharacterSheet from './CharacterSheet';
-import ItemCategoryList from './ItemCategoryList';
-import CharacterClassSelect from './CharacterClassSelect';
+import CharacterCreatorForm from './CharacterCreatorForm';
+import CharacterList from './CharacterList'
 
 class CharacterControl extends React.Component {
 
@@ -9,8 +8,16 @@ class CharacterControl extends React.Component {
     super(props);
     this.state = {
       sheetVisibleOnPage: false,
-      classSelect: ""
+      masterCharacterList: []
     };
+  }
+
+  handleAddingNewCharacterToList = (newCharacter) => {
+    const newMasterCharacterList = this.state.masterCharacterList.concat(newCharacter);
+    this.setState({
+      masterCharacterList: newMasterCharacterList,
+      sheetVisibleOnPage: false
+    })
   }
 
   handleClick = () => {
@@ -23,11 +30,11 @@ class CharacterControl extends React.Component {
     let currentVisibleState = null;
     let buttonText = null;
     if (this.state.sheetVisibleOnPage) {
-      currentVisibleState = <CharacterSheet />
-      buttonText = "Change your class"; 
+      currentVisibleState = <CharacterCreatorForm onNewCharacterCreation = {this.handleAddingNewCharacterToList}/>
+      buttonText = "Back to Character List"; 
     } else {
-      currentVisibleState = <CharacterClassSelect classSelect={this.state.classSelect}/>
-      buttonText = "Back to Character Sheet";
+      currentVisibleState = <CharacterList characterList = {this.state.masterCharacterList}/>
+      buttonText = "Create a Character";
       // pickClassButton = <button onClick={this.handleClick}>Pick Class</button>
     }
     return (

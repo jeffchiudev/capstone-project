@@ -3,18 +3,27 @@ import { v4 } from 'uuid';
 import wizard from './../img/wizard.png';
 import warrior from './../img/warrior.png';
 import thief from './../img/thief.png';
+import PropTypes from 'prop-types';
 
-function CharacterClassSelect(props){
+function CharacterCreatorForm(props){
   
-  function handleNewClassFormSubmit(event) {
+  function handleNewCharacterFormSubmision(event) {
     event.preventDefault();
-    console.log(event.target.class.value);
+    props.onNewCharacterCreation({
+      name: event.target.name.value,
+      class: event.target.class.value,
+      id: v4()
+    });
   }
   
   return (
     <React.Fragment>
       <h3>Pick your class</h3>
-      <form onSubmit = {handleNewClassFormSubmit}>
+      <form onSubmit = {handleNewCharacterFormSubmision}>
+        <input
+          type='text'
+          name='name'
+          placeholder='CharacterName'/>
         <div className="row mb-3">
           <div className="col card">
             <img src={warrior} alt="An image of a warrior"/>
@@ -53,4 +62,8 @@ function CharacterClassSelect(props){
   );
 }
 
-export default CharacterClassSelect;
+CharacterCreatorForm.propTypes = {
+  onNewCharacterCreation: PropTypes.func
+}
+
+export default CharacterCreatorForm;
