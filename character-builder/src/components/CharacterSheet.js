@@ -1,9 +1,13 @@
 import React from 'react';
+import CharacterClassSelect from './CharacterClassSelect';
+import PropTypes from 'prop-types';
 
 function CharacterSheet(props) {
   return (
     <React.Fragment>
-      <h2>This is a Character sheet</h2>
+      {props.characterPick.map((pick, index) => 
+        <CharacterClassSelect name={pick.name}
+      )}
     </React.Fragment>
   );
 }

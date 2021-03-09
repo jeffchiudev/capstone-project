@@ -36,3 +36,13 @@
 
 ## Monday 2021/3/8
 
+0930-1200: filling out details to components and control file to toggle between character sheet and character select
+
+1300-1545: added images to character select and now trying to figure out state.  
+
+1600-1645: more fiddling with state and figuring out how to display page.  
+
+## Tuesday 2021/3/9
+
+
+

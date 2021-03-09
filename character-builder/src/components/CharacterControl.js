@@ -8,7 +8,8 @@ class CharacterControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sheetVisibleOnPage: false
+      sheetVisibleOnPage: false,
+      classSelect: ""
     };
   }
 
@@ -25,7 +26,7 @@ class CharacterControl extends React.Component {
       currentVisibleState = <CharacterSheet />
       buttonText = "Change your class"; 
     } else {
-      currentVisibleState = <CharacterClassSelect />
+      currentVisibleState = <CharacterClassSelect classSelect={this.state.classSelect}/>
       buttonText = "Back to Character Sheet";
       // pickClassButton = <button onClick={this.handleClick}>Pick Class</button>
     }

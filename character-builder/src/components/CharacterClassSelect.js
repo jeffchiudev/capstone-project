@@ -18,7 +18,7 @@ function CharacterClassSelect(props){
         <div className="row mb-3">
           <div className="col card">
             <img src={warrior} alt="An image of a warrior"/>
-            <div className="text-center" class="radio">
+            <div style={{textAlign: 'center'}} class="radio">
               <label>
                 <input type="radio" name="class" value="warrior" checked/><br/>
                 <strong>Warrior</strong>
@@ -28,7 +28,7 @@ function CharacterClassSelect(props){
           </div>
           <div className="col card">
           <img src={wizard} alt="An image of a wizard"/>
-            <div className="text-center" class="radio">
+            <div style={{textAlign: 'center'}} class="radio">
               <label>
                 <input type="radio" name="class" value="wizard" /><br/>
                 <strong>Wizard</strong>
@@ -38,7 +38,7 @@ function CharacterClassSelect(props){
           </div>
           <div className="col card">
           <img src={thief} alt="An image of a thief"/>
-            <div className="text-center" class="radio">
+            <div style={{textAlign: 'center'}} class="radio">
               <label>
                 <input type="radio" name="class" value="thief" /><br/>
                 <strong>Thief</strong>
@@ -46,9 +46,8 @@ function CharacterClassSelect(props){
               </label>
             </div>
           </div>
-        </div>
-        
-        <button type='submit'>Make My Character!</button>
+        </div> 
+        <button type='submit'>Lock in My Class</button>
       </form>
     </React.Fragment>
   );
