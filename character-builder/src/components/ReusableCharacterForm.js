@@ -16,7 +16,7 @@ function ReusableCharacterForm(props) {
           <img src={warrior} alt="An image of a warrior"/>
           <div style={{textAlign: 'center'}} class="radio">
             <label>
-              <input type="radio" name="class" value="warrior" checked/><br/>
+              <input type="radio" name="characterClass" value="warrior" checked/><br/>
               <strong>Warrior</strong>
               <p>For discerning meatheads</p>
             </label>
@@ -26,7 +26,7 @@ function ReusableCharacterForm(props) {
         <img src={wizard} alt="An image of a wizard"/>
           <div style={{textAlign: 'center'}} class="radio">
             <label>
-              <input type="radio" name="class" value="wizard" /><br/>
+              <input type="radio" name="characterClass" value="wizard" /><br/>
               <strong>Wizard</strong>
               <p>For showy eggheads</p>
             </label>
@@ -36,7 +36,7 @@ function ReusableCharacterForm(props) {
         <img src={thief} alt="An image of a thief"/>
           <div style={{textAlign: 'center'}} class="radio">
             <label>
-              <input type="radio" name="class" value="thief" /><br/>
+              <input type="radio" name="characterClass" value="thief" /><br/>
               <strong>Thief</strong>
               <p>For tricky kleptomaniacs</p>
             </label>

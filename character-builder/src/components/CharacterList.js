@@ -20,7 +20,7 @@ function CharacterList(props) {
         <Character 
           whenCharacterClicked = {props.onCharacterSelection}
           name={character.name}
-          class={character.class} 
+          characterClass={character.characterClass} 
           id={character.id}
           key={character.id}/>
       )}

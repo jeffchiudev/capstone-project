@@ -9,7 +9,7 @@ function EditCharacterForm(props) {
     event.preventDefault();
     props.onEditCharacter({
       name: event.target.name.value,
-      class: event.target.class.value,
+      characterClass: event.target.characterClass.value,
       id: character.id
     });
   }

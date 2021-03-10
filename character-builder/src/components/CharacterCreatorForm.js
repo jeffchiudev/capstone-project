@@ -9,7 +9,7 @@ function CharacterCreatorForm(props){
     event.preventDefault();
     props.onNewCharacterCreation({
       name: event.target.name.value,
-      class: event.target.class.value,
+      characterClass: event.target.characterClass.value,
       id: v4()
     });
   }

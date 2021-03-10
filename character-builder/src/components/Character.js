@@ -5,7 +5,7 @@ function Character(props) {
   return (
     <React.Fragment>
       <div onClick = {() => props.whenCharacterClicked(props.id)}>
-        <h3>{props.name} - {props.class}</h3>
+        <h3>{props.name} - {props.characterClass}</h3>
       </div>
     </React.Fragment>
   );
@@ -13,7 +13,7 @@ function Character(props) {
 
 Character.propTypes = {
   name: PropTypes.string.isRequired,
-  class: PropTypes.string,
+  characterClass: PropTypes.string,
   id: PropTypes.string,
   whenCharacterClicked: PropTypes.func
 };

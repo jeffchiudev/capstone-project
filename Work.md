@@ -50,3 +50,9 @@
 
 1445-1530: adding CRUD functionality to character sheet
 
+1545-1645: working on figuring out how to figure out structure my page after adding crud functionality
+
+## Wednesday 2021/3/10
+
+0800-0900: working with adding redux?
+
