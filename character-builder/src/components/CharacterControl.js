@@ -2,6 +2,7 @@ import React from 'react';
 import CharacterCreatorForm from './CharacterCreatorForm';
 import CharacterList from './CharacterList';
 import CharacterSheetDetail from './CharacterSheetDetail';
+import EditCharacterForm from './EditCharacterForm';
 
 class CharacterControl extends React.Component {
 
@@ -10,14 +11,16 @@ class CharacterControl extends React.Component {
     this.state = {
       sheetVisibleOnPage: false,
       masterCharacterList: [],
-      selectedCharacter: null
+      selectedCharacter: null,
+      editing: false
     };
   }
   handleClick = () => {
     if (this.state.selectedCharacter != null) {
       this.setState ({
         sheetVisibleOnPage: false,
-        selectedCharacter: null
+        selectedCharacter: null,
+        editing: false
       });
     } else {
       this.setState(prevState => ({
@@ -39,6 +42,21 @@ class CharacterControl extends React.Component {
     this.setState({selectedCharacter: selectedCharacter});
   }
 
+  handleEditClick = () => {
+    this.setState({editing: true});
+  }
+
+  handleEditingCharacterInList = (characterToEdit) => {
+    const editedMasterCharacterlist = this.state.masterCharacterList
+      .filter(character => character.id !== this.state.selectedCharacter.id)
+      .concat(characterToEdit);
+    this.setState({
+      masterCharacterList: editedMasterCharacterlist,
+      editing: false,
+      selectedCharacter: null
+    });
+  }
+
   handleDeletingCharacter = (id) => {
     const newMasterCharacterList = this.state.masterCharacterList.filter(character => character.id !== id);
     this.setState({
@@ -51,10 +69,16 @@ class CharacterControl extends React.Component {
     let currentlyVisibleState = null;
     let buttonText = null;
 
-    if (this.state.selectedCharacter != null) {
+    if (this.state.editing) {
+      currentlyVisibleState = <EditCharacterForm 
+        character = {this.state.selectedCharacter}
+        onEditCharacter = {this.handleEditingCharacterInList}/>
+      buttonText = "Back to Character List";
+    } else if (this.state.selectedCharacter != null) {
       currentlyVisibleState = <CharacterSheetDetail 
         character = {this.state.selectedCharacter} 
-        onClickingDelete = {this.handleDeletingCharacter} />
+        onClickingDelete = {this.handleDeletingCharacter} 
+        onClickingEdit = {this.handleEditClick}/>
       buttonText = "Back to Character List";
     } else if (this.state.sheetVisibleOnPage) {
       currentlyVisibleState = <CharacterCreatorForm onNewCharacterCreation = {this.handleAddingNewCharacterToList}/>
