@@ -5,6 +5,9 @@ import CharacterSheetDetail from './CharacterSheetDetail';
 import EditCharacterForm from './EditCharacterForm';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import * as a from './../actions/index';
+import { withFirestore } from 'react-redux-firebase'
+
 
 class CharacterControl extends React.Component {
 
@@ -12,22 +15,23 @@ class CharacterControl extends React.Component {
     super(props);
     this.state = {
       // formVisibleOnPage: false,
-      selectedCharacter: null,
-      editing: false
+      // selectedCharacter: null,
+      // editing: false
     };
   }
   handleClick = () => {
-    if (this.state.selectedCharacter != null) {
-      this.setState ({
-        // formVisibleOnPage: false,
-        selectedCharacter: null,
-        editing: false
-      });
+    if (this.props.selectedCharacter != null) {
+      const { dispatch } = this.props;
+      const action = a.deselectCharacter();
+      dispatch(action)
+      // this.setState ({
+      //   // formVisibleOnPage: false,
+      //   selectedCharacter: null,
+      //   editing: false
+      // });
     } else {
       const { dispatch } = this.props;
-      const action = {
-        type: 'TOGGLE_FORM'
-      }
+      const action = a.toggleForm();
       dispatch(action);
       // this.setState(prevState => ({
       //   formVisibleOnPage: !prevState.formVisibleOnPage
@@ -35,19 +39,17 @@ class CharacterControl extends React.Component {
     } 
   }
 
-  handleAddingNewCharacterToList = (newCharacter) => {
+  handleAddingNewCharacterToList = () => {
     const { dispatch } = this.props;
-    const { id, name, characterClass } = newCharacter;
-    const action = {
-      type: 'ADD_CHARACTER',
-      id,
-      name,
-      characterClass,
-    }
-    dispatch(action);
-    const action2 = {
-      type: 'TOGGLE_FORM'
-    }
+    // const { id, name, characterClass } = newCharacter;
+    // const action = {
+    //   type: 'ADD_CHARACTER',
+    //   id,
+    //   name,
+    //   characterClass,
+    // }
+    // dispatch(action);
+    const action2 = a.toggleForm();
     dispatch(action2);
     // this.setState({formVisibleOnPage: false});
     // const newMasterCharacterList = this.state.masterCharacterList.concat(newCharacter);
@@ -58,29 +60,40 @@ class CharacterControl extends React.Component {
   }
 
   handleChangingSelectedCharacter = (id) => {
+    this.props.firestore.get({collection: 'characters', doc: id}).then((character) => {
+      const firestoreCharacter = {
+        name: character.get("name"),
+        characterClass: character.get("characterClass"),
+        id: character.id
+      }
+      this.setState({selectedCharacter: firestoreCharacter});
+    });
+    // const { distpatch } = this.props;
+    // const action = a.selectedCharacter();
+    // dispatch(action);
     // const selectedCharacter = this.state.masterCharacterList.filter(character => character.id === id )[0];
-    const selectedCharacter = this.props.masterCharacterList[id];
-    this.setState({selectedCharacter: selectedCharacter});
+    // const selectedCharacter = this.props.masterCharacterList[id];
+    // this.setState({selectedCharacter: selectedCharacter});
   }
 
   handleEditClick = () => {
-    this.setState({editing: true});
+    const { dispatch } = this.props;
+    const action = a.toggleEdit();
+    dispatch(action);
   }
 
-  handleEditingCharacterInList = (characterToEdit) => {
-    const { dispatch } = this.props;
-    const { id, name, characterClass } = characterToEdit;
-    const action = {
-      type: 'ADD_CHARACTER',
-      id,
-      name,
-      characterClass,
-    }
-    dispatch(action);
+  handleEditingCharacterInList = () => {
     this.setState({
       editing: false,
       selectedCharacter: null
     });
+  //   const { dispatch } = this.props;
+  //   // const { id, name, characterClass } = characterToEdit;
+  //   const action = a.toggleEdit();
+  //   dispatch(action);
+  //   const action2 = a.deselectCharacter();
+  //   dispatch(action2);
+
     // const editedMasterCharacterlist = this.state.masterCharacterList
     //   .filter(character => character.id !== this.state.selectedCharacter.id)
     //   .concat(characterToEdit);
@@ -92,13 +105,12 @@ class CharacterControl extends React.Component {
   }
 
   handleDeletingCharacter = (id) => {
-    const { dispatch } = this.props;
-    const action = {
-      type: 'DELETE_CHARACTER',
-      id,
-    }
-    dispatch(action);
+    this.props.firestore.delete({collection: 'characters', doc: id});
     this.setState({selectedCharacter: null});
+    // const { dispatch } = this.props;
+    // const action = a.deselectCharacter();
+    // dispatch(action);
+    // this.setState({selectedCharacter: null});
     // const newMasterCharacterList = this.state.masterCharacterList.filter(character => character.id !== id);
     // this.setState({
     //   masterCharacterList: newMasterCharacterList,
@@ -139,20 +151,24 @@ class CharacterControl extends React.Component {
       </React.Fragment>
     );
   }
-}
+
 
 CharacterControl.propTypes = {
   masterCharacterList: PropTypes.object,
-  formVisibleOnPage: PropTypes.bool
+  formVisibleOnPage: PropTypes.bool,
+  selectedCharacter: PropTypes.object,
+  editingVisibleOnPage: PropTypes.bool
 };
 
 const mapStateToProps = state => {
   return {
     masterCharacterList: state.masterCharacterList,
-    formVisibleOnPage: state.formVisibleOnPage
+    formVisibleOnPage: state.formVisibleOnPage,
+    selectedCharacter: state.selectedCharacter,
+    editingVisibleOnPage: state.editingVisibleOnPage
   }
 }
 
 CharacterControl = connect(mapStateToProps)(CharacterControl);
 
-export default CharacterControl;
+export default withFirestore(CharacterControl);

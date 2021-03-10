@@ -13,7 +13,7 @@ function Character(props) {
 
 Character.propTypes = {
   name: PropTypes.string.isRequired,
-  characterClass: PropTypes.string,
+  characterClass: PropTypes.string.isRequired,
   id: PropTypes.string,
   whenCharacterClicked: PropTypes.func
 };

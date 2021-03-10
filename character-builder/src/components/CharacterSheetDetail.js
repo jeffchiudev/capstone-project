@@ -16,7 +16,8 @@ function CharacterSheetDetail(props) {
 
 CharacterSheetDetail.propTypes = {
   character: PropTypes.object,
-  onClickingDelete: PropTypes.func
+  onClickingDelete: PropTypes.func,
+  onClickingEdit: PropTypes.func
 };
 
 export default CharacterSheetDetail;
