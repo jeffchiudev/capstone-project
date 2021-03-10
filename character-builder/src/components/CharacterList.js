@@ -16,21 +16,29 @@ import PropTypes from 'prop-types';
 function CharacterList(props) {
   return (
     <React.Fragment>
-      {props.characterList.map((character) =>
+      {Object.values(props.characterList).map((character) => 
+        <Character
+          whenCharacterClicked = { props.onCharacterSelection }
+          name = {character.name}
+          characterClass = {character.characterClass}
+          id = {character.id}
+          key = {character.id}/>
+      )}
+      {/* {props.characterList.map((character) =>
         <Character 
           whenCharacterClicked = {props.onCharacterSelection}
           name={character.name}
           characterClass={character.characterClass} 
           id={character.id}
           key={character.id}/>
-      )}
+      )} */}
     </React.Fragment>
     
   );
 }
 
 CharacterList.propTypes = {
-  characterList: PropTypes.array,
+  characterList: PropTypes.object,
   onCharacterSelection: PropTypes.func
 }
 
