@@ -1,6 +1,6 @@
 <div align="center">
 
-# Oubliettes & Dragones: A Character Building Exercise
+# 🏯 Oubliettes & Dragones: A Character Building Exercise 🐲
 
 <img src="https://github.com/jeffchiudev.png" width="200px" height="auto" style="border-radius: 15px 50px;"><br>
 ________________________
@@ -8,7 +8,7 @@ ________________________
 <h4> By Jeff Chiu</h4>
 </div>
 
-## 📖 About: 
+## 💬 About: 
 
 ### Description:
 
@@ -20,10 +20,18 @@ By contrast we have mainstream AAA developed, RPG videogames where items tend to
 
 This is important for the visual medium of video games and less so for the imaginary playspace of a TTRPG.  However I believe there can be a happy compromise that adds visual elements that at least gives the player a better idea of what they're changing on their player character as they play. 
 
-#### User Stories
+
+<div align="center"><img src="./character-builder/src/img/sample.png" width="500px" height="auto"></div><br>
+
+### User Stories
 
 | ID | User Story | Accepted |
 | :--------: | :------: | :-------: |
+| US01 | user should be able to create, update and delete a character | true |
+| US02 | user should be able to edit their character sheet live | false |
+| US03 | user should be able to make changes by dragging and dropping elements to make changes to the character sheet | false |
+
+<br>
 
 ### 🕹️Technologies Used
 
@@ -38,7 +46,7 @@ This is important for the visual medium of video games and less so for the imagi
 
 ### Componnent Tree
 
-### 🐛 Known Bugs
+<div align="center"><img src="./character-builder/src/img/diagram.png" width="500px" height="auto"></div><br>
 
 ## 🎛️ Software Requirements
 

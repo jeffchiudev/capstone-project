@@ -14,7 +14,7 @@ function CharacterSheetDetail(props) {
   if (character.characterClass == "wizard") {
     return (
       <React.Fragment>
-        <h1 style={{textAlign: 'center', background: '#fa9f42', backgroundImage: `url(${lightning})`, backgroundSize: 'cover', opacity: '0.7'}} className="jumbotron">{character.name}</h1>
+        <h1 style={{textAlign: 'center', background: '#fa9f42', backgroundImage: `url(${lightning})`, backgroundSize: 'cover', opacity: '0.7', color: 'white'}} className="jumbotron">{character.name}</h1>
         <Container>
           <Row>
             <Col className="card">
@@ -101,7 +101,7 @@ function CharacterSheetDetail(props) {
   } else if (character.characterClass === "thief") {
     return (
       <React.Fragment>
-        <h1 style={{textAlign: 'center', background: '#fa9f42', backgroundImage: `url(${alleyway})`, backgroundSize: 'cover', opacity: '0.7'}} className="jumbotron">{character.name}</h1>
+        <h1 style={{textAlign: 'center', background: '#fa9f42', backgroundImage: `url(${alleyway})`, backgroundSize: 'cover', opacity: '0.7', color: 'white'}} className="jumbotron">{character.name}</h1>
         <Container>
           <Row>
             <Col className="card">
