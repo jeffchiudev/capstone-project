@@ -29,5 +29,5 @@ export const selectedCharacter = (character) => ({
 });
 
 export const deselectCharacter = () => ({
-  type: c.DELETE_CHARACTER
+  type: c.DESELECT_CHARACTER
 });

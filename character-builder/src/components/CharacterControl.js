@@ -6,18 +6,18 @@ import EditCharacterForm from './EditCharacterForm';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as a from './../actions/index';
-import { withFirestore } from 'react-redux-firebase'
+import { withFirestore, isLoaded } from 'react-redux-firebase'
 
 
 class CharacterControl extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      // formVisibleOnPage: false,
-      // selectedCharacter: null,
-      // editing: false
-    };
+    // this.state = {
+    // //   // formVisibleOnPage: false,
+    //   selectedCharacter: null,
+    //   editing: false
+    // };
   }
   handleClick = () => {
     if (this.props.selectedCharacter != null) {
@@ -61,38 +61,40 @@ class CharacterControl extends React.Component {
 
   handleChangingSelectedCharacter = (id) => {
     this.props.firestore.get({collection: 'characters', doc: id}).then((character) => {
+      const { dispatch } = this.props
       const firestoreCharacter = {
         name: character.get("name"),
         characterClass: character.get("characterClass"),
         id: character.id
       }
-      this.setState({selectedCharacter: firestoreCharacter});
+      const action = a.selectedCharacter(firestoreCharacter);
+      dispatch(action);
     });
+    // this.setState({selectedCharacter: firestoreCharacter});
     // const { distpatch } = this.props;
-    // const action = a.selectedCharacter();
-    // dispatch(action);
     // const selectedCharacter = this.state.masterCharacterList.filter(character => character.id === id )[0];
     // const selectedCharacter = this.props.masterCharacterList[id];
     // this.setState({selectedCharacter: selectedCharacter});
   }
 
   handleEditClick = () => {
+    // this.setState({editing:true});
     const { dispatch } = this.props;
     const action = a.toggleEdit();
     dispatch(action);
   }
 
   handleEditingCharacterInList = () => {
-    this.setState({
-      editing: false,
-      selectedCharacter: null
-    });
-  //   const { dispatch } = this.props;
+    // this.setState({
+    //   editing: false,
+    //   selectedCharacter: null
+    // });
+    const { dispatch } = this.props;
   //   // const { id, name, characterClass } = characterToEdit;
-  //   const action = a.toggleEdit();
-  //   dispatch(action);
-  //   const action2 = a.deselectCharacter();
-  //   dispatch(action2);
+    const action = a.toggleEdit();
+    dispatch(action);
+    const action2 = a.deselectCharacter();
+    dispatch(action2);
 
     // const editedMasterCharacterlist = this.state.masterCharacterList
     //   .filter(character => character.id !== this.state.selectedCharacter.id)
@@ -107,9 +109,9 @@ class CharacterControl extends React.Component {
   handleDeletingCharacter = (id) => {
     this.props.firestore.delete({collection: 'characters', doc: id});
     this.setState({selectedCharacter: null});
-    // const { dispatch } = this.props;
-    // const action = a.deselectCharacter();
-    // dispatch(action);
+    const { dispatch } = this.props;
+    const action = a.deselectCharacter();
+    dispatch(action);
     // this.setState({selectedCharacter: null});
     // const newMasterCharacterList = this.state.masterCharacterList.filter(character => character.id !== id);
     // this.setState({
@@ -119,38 +121,60 @@ class CharacterControl extends React.Component {
   }
 
   render () {
-    let currentlyVisibleState = null;
-    let buttonText = null;
 
-    if (this.state.editing) {
-      currentlyVisibleState = <EditCharacterForm 
-        character = {this.state.selectedCharacter}
-        onEditCharacter = {this.handleEditingCharacterInList}/>
-      buttonText = "Back to Character List";
-    } else if (this.state.selectedCharacter != null) {
-      currentlyVisibleState = <CharacterSheetDetail 
-        character = {this.state.selectedCharacter} 
-        onClickingDelete = {this.handleDeletingCharacter} 
-        onClickingEdit = {this.handleEditClick}/>
-      buttonText = "Back to Character List";
-    } else if (this.props.formVisibleOnPage) {
-      currentlyVisibleState = <CharacterCreatorForm 
-        onNewCharacterCreation = {this.handleAddingNewCharacterToList}/>
-      buttonText = "Back to Character List"; 
-    } else {
-      currentlyVisibleState = <CharacterList 
-        characterList = {this.props.masterCharacterList}
-        onCharacterSelection = {this.handleChangingSelectedCharacter} />
-      buttonText = "Create a Character";
-      // pickClassButton = <button onClick={this.handleClick}>Pick Class</button>
+    const auth = this.props.firebase.auth();
+
+    if (!isLoaded(auth)) {
+      return (
+        <React.Fragment>
+          <h1>Loading...</h1>
+        </React.Fragment>
+      )
     }
-    return (
-      <React.Fragment>
-        {currentlyVisibleState}
-        <button onClick = {this.handleClick}>{buttonText}</button>
-      </React.Fragment>
-    );
+
+    if ((isLoaded(auth)) && (auth.currentUser == null)) {
+      return (
+        <React.Fragment>
+          <h1>Must be signed in to see character sheets.</h1>
+        </React.Fragment>
+      )
+    }
+
+    if ((isLoaded(auth)) && (auth.currentUser != null)) {
+      let currentlyVisibleState = null;
+      let buttonText = null;
+
+      if (this.props.editingVisibleOnPage) {
+        currentlyVisibleState = <EditCharacterForm 
+          character = {this.props.selectedCharacter}
+          onEditCharacter = {this.handleEditingCharacterInList}/>
+        buttonText = "Back to Character List";
+      } else if (this.props.selectedCharacter != null) {
+        currentlyVisibleState = <CharacterSheetDetail 
+          character = {this.props.selectedCharacter} 
+          onClickingDelete = {this.handleDeletingCharacter} 
+          onClickingEdit = {this.handleEditClick}/>
+        buttonText = "Back to Character List";
+      } else if (this.props.formVisibleOnPage) {
+        currentlyVisibleState = <CharacterCreatorForm 
+          onNewCharacterCreation = {this.handleAddingNewCharacterToList}/>
+        buttonText = "Back to Character List"; 
+      } else {
+        currentlyVisibleState = <CharacterList 
+          characterList = {this.props.masterCharacterList}
+          onCharacterSelection = {this.handleChangingSelectedCharacter} />
+        buttonText = "Create a Character";
+        // pickClassButton = <button onClick={this.handleClick}>Pick Class</button>
+      }
+      return (
+        <React.Fragment>
+          {currentlyVisibleState}
+          <button onClick = {this.handleClick}>{buttonText}</button>
+        </React.Fragment>
+      );
+    }
   }
+}
 
 
 CharacterControl.propTypes = {

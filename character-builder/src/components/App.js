@@ -1,15 +1,30 @@
 import React from 'react';
 import Header from './Header';
 import CharacterControl from './CharacterControl';
+import Signin from "./Signin";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <React.Fragment>
-      <div className="container">
-        <Header />
-        <CharacterControl/>
+    <Router>
+      <Header/>
+      <div style={{paddingLeft: '70px', paddingTop: '30px'}} className="container">
+        <Switch>
+          <Route path="/signin">
+            <Signin />
+          </Route>
+          <Route path="/">
+            <CharacterControl />
+          </Route>
+        </Switch>
       </div>
-    </React.Fragment>
+    </Router>
+    // <React.Fragment>
+    //   <div className="container">
+    //     <Header />
+    //     <CharacterControl/>
+    //   </div>
+    // </React.Fragment>
   );
 }
 
